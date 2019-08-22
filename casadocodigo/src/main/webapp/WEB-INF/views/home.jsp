@@ -15,7 +15,7 @@
 		</tr>
 		<tr>
 			<td>TDD na Prática - Java</td>
-			<td>Google Android</td>
+			<td>Google Androids</td>
 		</tr>
 	</table>
 </body>
