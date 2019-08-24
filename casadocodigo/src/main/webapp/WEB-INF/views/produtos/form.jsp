@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,6 +18,13 @@
 		</div>
 		<div>
 			<label> Páginas</label> <input type="text" name="paginas" />
+		</div>
+		<div>
+			<core:forEach items="${tipos }" var="tipoPreco" varStatus="status">
+				<label>${tipoPreco }</label>
+				<input type="text" name="precos[${status.index}].valor">
+				<input type="hidden" name="precos[${status.index }].tipo" value="${tipoPreco }"/>
+			</core:forEach>
 		</div>
 		<button type="submit">Cadastrar</button>
 	</form>
