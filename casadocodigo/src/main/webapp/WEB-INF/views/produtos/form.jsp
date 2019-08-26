@@ -14,7 +14,7 @@
 		</div>
 		<div>
 			<label> Descrição</label>
-			<textarea rows="10" cols="20" name="descricao">Digíte seu código aqui</textarea>
+			<textarea rows="10" cols="20" name="descricao">Digíte a descrição aqui</textarea>
 		</div>
 		<div>
 			<label> Páginas</label> <input type="text" name="paginas" />
