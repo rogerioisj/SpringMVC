@@ -20,6 +20,7 @@ import br.com.casadocodigo.loja.modelo.UtilitarioProduto.TipoPreco;
 import br.com.casadocodigo.loja.validacao.ProdutoValidacao;
 
 @Controller
+@RequestMapping("/produtos")
 public class ProdutosController {
 
 	@Autowired
@@ -30,7 +31,7 @@ public class ProdutosController {
 		binder.addValidators(new ProdutoValidacao());
 	}
 
-	@RequestMapping("/produtos/form")
+	@RequestMapping("/form")
 	public ModelAndView form() {
 		ModelAndView mAV = new ModelAndView("produtos/form");
 		mAV.addObject("tipos", TipoPreco.values());
