@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
@@ -72,6 +73,12 @@ public class ProdutosController {
 		return mAV;
 	}
 	
-	
+	@RequestMapping("/detalhe/{id}")
+	public ModelAndView detalhe(@PathVariable("id")Integer id) {
+		ModelAndView detalhe = new ModelAndView("produtos/detalhe");
+		Produto produto = produtoDAO.find(id);
+		detalhe.addObject("produto", produto);
+		return detalhe;
+	}
 
 }

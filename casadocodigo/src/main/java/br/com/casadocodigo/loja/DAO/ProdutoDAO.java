@@ -27,4 +27,8 @@ public class ProdutoDAO {
 		return manager.createQuery("select p from Produto p", Produto.class).getResultList();
 	}
 
+	public Produto find(Integer id) {
+		return manager.find(Produto.class, id);
+	}
+
 }
