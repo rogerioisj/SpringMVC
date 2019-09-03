@@ -77,6 +77,7 @@ public class ProdutosController {
 	public ModelAndView detalhe(@PathVariable("id")Integer id) {
 		ModelAndView detalhe = new ModelAndView("produtos/detalhe");
 		Produto produto = produtoDAO.find(id);
+		System.out.println(produto);
 		detalhe.addObject("produto", produto);
 		return detalhe;
 	}

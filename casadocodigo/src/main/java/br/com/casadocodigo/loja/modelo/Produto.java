@@ -1,5 +1,6 @@
 package br.com.casadocodigo.loja.modelo;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -74,7 +75,8 @@ public class Produto {
 
 	@Override
 	public String toString() {
-		return "Nome: " + this.titulo + "\nDescrição: " + this.descricao + "\nPáginas: " + this.paginas;
+		return "Nome: " + this.titulo + "\nDescrição: " + this.descricao + "\nPáginas: " + this.paginas + "\n Data de"
+				+ "lançamento: " + this.dataLancamento;
 	}
 
 	public Calendar getDataLancamento() {
@@ -92,5 +94,36 @@ public class Produto {
 	public void setSumarioPath(String sumarioPath) {
 		this.sumarioPath = sumarioPath;
 	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Produto other = (Produto) obj;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		return true;
+	}
+
+	public BigDecimal precoPara(TipoPreco tipoPreco) {
+		return precos.stream().filter(preco -> preco.getTipo().equals(tipoPreco)).findFirst().get().getValor();
+	}
+	
+	
 
 }
