@@ -65,20 +65,22 @@
 
 	<nav class="categories-nav">
 		<ul class="container">
-			<li class="category"><a href="http://www.casadocodigo.com.br">Home</a></li>
-			<li class="category"><a href="/collections/livros-de-agile">
-					Agile </a></li>
-			<li class="category"><a href="/collections/livros-de-front-end">
-					Front End </a></li>
-			<li class="category"><a href="/collections/livros-de-games">
-					Games </a></li>
-			<li class="category"><a href="/collections/livros-de-java">
-					Java </a></li>
-			<li class="category"><a href="/collections/livros-de-mobile">
-					Mobile </a></li>
-			<li class="category"><a
-				href="/collections/livros-desenvolvimento-web"> Web </a></li>
-			<li class="category"><a href="/collections/outros"> Outros </a></li>
+			<li class="category"><a href="${s:mvcUrl('HC#home').build()}">Home</a></li>
+			<li class="category"><a href="${s:mvcUrl('PC#listar').build()}">Lista de produtos</a></li>
+			<li class="category"><a href="${s:mvcUrl('PC#form').build()}">Cadastro de Produtos</a></li>
+<!-- 			<li class="category"><a href="/collections/livros-de-agile"> -->
+<!-- 					Agile </a></li> -->
+<!-- 			<li class="category"><a href="/collections/livros-de-front-end"> -->
+<!-- 					Front End </a></li> -->
+<!-- 			<li class="category"><a href="/collections/livros-de-games"> -->
+<!-- 					Games </a></li> -->
+<!-- 			<li class="category"><a href="/collections/livros-de-java"> -->
+<!-- 					Java </a></li> -->
+<!-- 			<li class="category"><a href="/collections/livros-de-mobile"> -->
+<!-- 					Mobile </a></li> -->
+<!-- 			<li class="category"><a -->
+<!-- 				href="/collections/livros-desenvolvimento-web"> Web </a></li> -->
+<!-- 			<li class="category"><a href="/collections/outros"> Outros </a></li> -->
 		</ul>
 	</nav>
 
@@ -169,7 +171,7 @@
 				<!-- books-footer -->
 				<p class="footer-title">Links da Casa do Código</p>
 				<ul class="footer-text-links">
-					<li><a href="http://livros.casadocodigo.com.br" rel="nofollow">Meus
+					<li><a href="${s:mvcUrl('PC#listar').build()}" rel="nofollow">Meus
 							E-books</a></li>
 					<li><a href="/pages/sobre-a-casa-do-codigo">Sobre a Casa
 							do Código</a></li>
