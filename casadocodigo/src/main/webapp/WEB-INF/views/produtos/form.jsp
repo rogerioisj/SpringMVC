@@ -3,6 +3,8 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="core"%>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@taglib uri="http://www.springframework.org/tags" prefix="s"%>
+<%@ taglib uri="http://www.springframework.org/security/tags"
+	prefix="security"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -30,16 +32,27 @@ body {
 					class="icon-bar"></span> <span class="icon-bar"></span> <span
 					class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="${s:mvcUrl('HC#home').build()}">Casa do Código</a>
+			<a class="navbar-brand" href="${s:mvcUrl('HC#home').build()}">Casa
+				do Código</a>
 		</div>
 		<div class="collapse navbar-collapse"
 			id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav">
-				<li><a href="${s:mvcUrl('PC#listar').build()}">Lista de
-						Produtos</a></li>
-				<li><a href="${s:mvcUrl('PC#form').build()}">Cadastro de
-						Produtos</a></li>
+				<security:authorize access="hasRole('ROLE_ADMIN')">
+					<li><a href="${s:mvcUrl('PC#listar').build()}">Lista de
+							Produtos</a></li>
+					<li><a href="${s:mvcUrl('PC#form').build()}">Cadastro de
+							Produtos</a></li>
+				</security:authorize>
 			</ul>
+			<ul class="nav navbar-nav navbar-right">
+				<%-- 			Variação:	<security:authentication property="principal.username"/> --%>
+				<li><a href="#"><security:authentication
+							property="principal" var="usuario" /> Usuário:
+						${usuario.username } </a></li>
+				<li><a href="/casadocodigo/logout">Sair</a></li>
+			</ul>
+
 		</div>
 		<!-- /.navbar-collapse -->
 	</div>
@@ -55,7 +68,7 @@ body {
 
 		<div class="form-group">
 			<label> Título </label>
-			<form:input path="titulo" cssClass="form-control"/>
+			<form:input path="titulo" cssClass="form-control" />
 			<form:errors path="titulo" />
 		</div>
 		<div class="form-group">
@@ -65,18 +78,19 @@ body {
 		</div>
 		<div class="form-group">
 			<label> Páginas</label>
-			<form:input path="paginas" cssClass="form-control"/>
+			<form:input path="paginas" cssClass="form-control" />
 			<form:errors path="paginas" />
 		</div>
 		<div class="form-group">
 			<label> Data de Lançamento</label>
-			<form:input path="dataLancamento" cssClass="form-control"/>
+			<form:input path="dataLancamento" cssClass="form-control" />
 			<form:errors path="dataLancamento" />
 		</div>
 		<div class="form-group">
 			<core:forEach items="${tipos }" var="tipoPreco" varStatus="status">
 				<label>${tipoPreco }</label>
-				<form:input path="precos[${status.index}].valor" cssClass="form-control"/>
+				<form:input path="precos[${status.index}].valor"
+					cssClass="form-control" />
 				<form:hidden path="precos[${status.index }].tipo"
 					value="${tipoPreco }" />
 			</core:forEach>
