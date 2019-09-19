@@ -29,7 +29,7 @@ public class Produto {
 	private String sumarioPath;
 
 	@ElementCollection(fetch = FetchType.EAGER)
-	private List<Preco> precos;
+	private List<Preco> precos = new ArrayList<Preco>();
 
 	
 	
