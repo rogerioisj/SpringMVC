@@ -11,31 +11,9 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Profile;
 import org.springframework.core.env.Environment;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
-import org.springframework.orm.jpa.JpaVendorAdapter;
-import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
-import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
-import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Profile("prod")
-@EnableTransactionManagement
 public class JPAProductionConfiguration {
-	
-	@Bean
-	public LocalContainerEntityManagerFactoryBean entityManagerFactory(DataSource dataSource, Properties aditionalProperties) {
-		
-		JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
-
-		LocalContainerEntityManagerFactoryBean factory = new LocalContainerEntityManagerFactoryBean();
-		factory.setJpaVendorAdapter(vendorAdapter);
-		factory.setDataSource(dataSource);
-		factory.setJpaProperties(aditionalProperties);
-		factory.setPackagesToScan("br.com.casadocodigo.loja.modelo");
-
-		return factory;
-
-//		Properties props = aditionalProperties();
-
-	}
 	
 	@Autowired
 	//org.springframework.core.env.Environment
