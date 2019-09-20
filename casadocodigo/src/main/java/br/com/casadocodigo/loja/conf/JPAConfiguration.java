@@ -14,6 +14,7 @@ import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+@Profile("dev")
 @EnableTransactionManagement
 public class JPAConfiguration {
 
@@ -35,7 +36,7 @@ public class JPAConfiguration {
 	}
 
 	@Bean
-	@Profile("dev")
+//	@Profile("dev")
 	public Properties aditionalProperties() {
 		Properties props = new Properties();
 		props.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQL5Dialect");
@@ -45,7 +46,7 @@ public class JPAConfiguration {
 	}
 
 	@Bean
-	@Profile("dev")
+//	@Profile("dev")
 	public DataSource dataSource() {
 		DriverManagerDataSource dataSource = new DriverManagerDataSource();
 		dataSource.setUsername("root");
