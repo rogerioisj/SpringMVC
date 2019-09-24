@@ -15,8 +15,8 @@ import org.springframework.jdbc.datasource.DriverManagerDataSource;
 @Profile("prod")
 public class JPAProductionConfiguration {
 	
-	@Autowired
 	//org.springframework.core.env.Environment
+	@Autowired
 	private Environment environment;
 
 	@Bean
@@ -34,10 +34,10 @@ public class JPAProductionConfiguration {
 		URI dbUrl = new URI(environment.getProperty("DATABASE_URL"));
 		
 		DriverManagerDataSource dataSource = new DriverManagerDataSource();
+		dataSource.setDriverClassName("org.postgresql.Driver");
 		dataSource.setUrl("jdbc:postgresql://"+dbUrl.getHost()+":"+dbUrl.getPort()+dbUrl.getPath());
 	    dataSource.setUsername(dbUrl.getUserInfo().split(":")[0]);
 	    dataSource.setPassword(dbUrl.getUserInfo().split(":")[1]);
-		dataSource.setDriverClassName("org.postgresql.Driver");
 
 		return dataSource;
 
