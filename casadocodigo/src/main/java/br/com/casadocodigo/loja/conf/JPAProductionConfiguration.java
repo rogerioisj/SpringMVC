@@ -23,20 +23,20 @@ public class JPAProductionConfiguration {
 
 	@Bean
 	public Properties aditionalProperties() {
-		Properties props = new Properties();
-		props.setProperty("hibernate.dialect", "org.hibernate.dialect.PostgreSQLDialect");
-		props.setProperty("hibernate.show_sql", "true");
-		props.setProperty("hibernate.hbm2ddl.auto", "update");
-		return props;
+		Properties properties = new Properties();
+		properties.setProperty("hibernate.dialect", "org.hibernate.dialect.PostgreSQLDialect");
+		properties.setProperty("hibernate.show_sql", "true");
+		properties.setProperty("hibernate.hbm2ddl.auto", "update");
+		return properties;
 	}
 
 	@Bean
-	public DataSource dataSource() throws URISyntaxException {
+	public DriverManagerDataSource dataSource() throws URISyntaxException {
+		DriverManagerDataSource dataSource = new DriverManagerDataSource();
+		dataSource.setDriverClassName("org.postgresql.Driver");
 		
 		URI dbUrl = new URI(environment.getProperty("DATABASE_URL"));
 		
-		DriverManagerDataSource dataSource = new DriverManagerDataSource();
-		dataSource.setDriverClassName("org.postgresql.Driver");
 		dataSource.setUrl("jdbc:postgresql://"+dbUrl.getHost()+":"+dbUrl.getPort()+dbUrl.getPath());
 	    dataSource.setUsername(dbUrl.getUserInfo().split(":")[0]);
 	    dataSource.setPassword(dbUrl.getUserInfo().split(":")[1]);
